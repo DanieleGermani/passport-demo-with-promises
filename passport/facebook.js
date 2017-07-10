@@ -1,5 +1,5 @@
-const passport      = require("passport");
-const User =  require('../models/User');
+const passport = require("passport");
+const User = require('../models/User');
 const FbStrategy = require('passport-facebook').Strategy;
 
 passport.use(new FbStrategy({
@@ -8,7 +8,9 @@ passport.use(new FbStrategy({
   callbackURL: "/auth/facebook/callback"
 }, (accessToken, refreshToken, profile, done) => {
   console.log(profile);
-  User.findOne({ facebookID: profile.id }, (err, user) => {
+  User.findOne({
+    facebookID: profile.id
+  }, (err, user) => {
     if (err) {
       return done(err);
     }
